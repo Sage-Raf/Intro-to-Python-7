@@ -1,0 +1,70 @@
+import random
+
+Num_of_friends = input(print("Enter the number of friends joining (including you):"))
+
+if Num_of_friends.isnumeric() == False or Num_of_friends == '0':
+    
+    print("\nNo one is joining for the party")
+    
+else:
+    
+   print("\nEnter the name of every friend (including you), each on a new line:")
+    
+   names_in_dict={}
+
+   for i in range(int(Num_of_friends)):
+        
+        name = input()
+        names_in_dict[name] = 0
+
+   print("\nEnter the total bill value:")
+   
+   bill = input()
+  
+   print('\nDo you want to use the "Who is lucky?" feature? Write Yes/No:')
+   
+   Lucky_ans = input()
+   
+   print("\n")
+   
+   if Lucky_ans == 'Yes':
+       
+       random.seed()
+       rando = random.choice(list(names_in_dict.keys()))
+       
+       print(rando, "is the lucky one!")
+       
+       split_bill = int(bill) // int(int(Num_of_friends) - 1)
+       
+       for i in names_in_dict:
+           
+           if i == rando:
+               
+               continue
+           
+           else:
+               
+               names_in_dict[i] = split_bill
+               
+       lucky_dict = {key : round(value) for (key, value) in  names_in_dict.items()}
+        
+       print("\n")
+       
+       print(lucky_dict)
+       
+   else:
+       
+       print("No one is going to be lucky")
+       
+       split_bill = float(bill) / int(Num_of_friends)
+
+       for i in names_in_dict:
+           
+           names_in_dict[i] = split_bill
+        
+       not_lucky_dict = {key : round(value, 2) for (key, value) in  names_in_dict.items()}
+
+       print("\n")
+       
+       print(not_lucky_dict)
+       
